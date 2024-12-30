@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int countSubstrings(string s) {
+        int totalCount = 0;
+        int n = s.size();
+
+        // Loop over all possible centers
+        for (int center = 0; center < 2 * n - 1; center++) {
+            int left = center / 2;
+            int right = left + center % 2; // Adjust right for even-length palindromes
+
+            // Expand around the center
+            while (left >= 0 && right < n && s[left] == s[right]) {
+                totalCount++;
+                left--;
+                right++;
+            }
+        }
+        return totalCount;
+    }
+};
