@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+    unordered_map<string,int> wordCount;
+    for(int i=0;i<words.size();i++)
+    {wordCount[words[i]]++;}
+    vector<string> unique;
+    for(auto& it:wordCount)
+    unique.push_back(it.first);
+    sort(unique.begin(), unique.end(), [&](const string& a, const string& b)
+    {
+      if(wordCount[a]==wordCount[b]) return a<b;
+      return wordCount[a]>wordCount[b];
+    });
+    vector<string> result(unique.begin(), unique.begin() + k);
+    return result;
+    }
+};
