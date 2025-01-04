@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+    vector<vector<int>> res;
+    priority_queue<pair<int,vector<int>>> pq;//closest... so simple this
+    for(auto& it:points)
+    {
+        int x=it[0];
+        int y=it[1];
+        int dist=x*x+y*y;
+        pq.push({dist,it});//see sysntax
+        while(pq.size()>k) pq.pop();
+    }    
+    while(!pq.empty())
+    {
+        res.push_back(pq.top().second);
+        pq.pop();
+    }
+    return res;
+    }
+};
