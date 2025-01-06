@@ -1,0 +1,26 @@
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        vector<int> s_freq(26, 0);
+        vector<int> t_freq(26, 0);
+
+        // Count frequencies in string s
+        for (auto& c : s) {
+            s_freq[c - 'a']++;
+        }
+
+        // Count frequencies in string t
+        for (auto& ch : t) {
+            t_freq[ch - 'a']++;
+        }
+
+        // Find the character with a mismatch in frequency
+        for (int i = 0; i < 26; i++) {
+            if (s_freq[i] != t_freq[i]) {
+                return 'a' + i;
+            }
+        }
+
+        return ' '; // This line should never be reached
+    }
+};
