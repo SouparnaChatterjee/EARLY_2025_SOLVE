@@ -1,0 +1,13 @@
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+    if(root==NULL)    return true;
+    return isUnivalHelper(root, root->val);
+    }
+bool isUnivalHelper(TreeNode* node, int val)
+{
+    if(node==NULL) return true;
+    if(node->val!=val) return false;
+    return isUnivalHelper(node->left,val) && isUnivalHelper(node->right,val);
+}
+};
