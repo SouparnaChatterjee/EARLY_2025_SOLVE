@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> postorder(Node* root) {
+        if (root == NULL) return {};
+        
+        stack<Node*> st;
+        st.push(root);
+        vector<int> res;
+        
+        while (!st.empty()) {
+            Node* curr = st.top();
+            st.pop();
+            res.push_back(curr->val); // Use curr->val instead of root->val
+            
+            // Push all children of the current node onto the stack
+            for (int i = 0; i < curr->children.size(); i++) {
+                st.push(curr->children[i]);
+            }
+        }
+        
+        // Reverse the result to get the correct postorder traversal
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
