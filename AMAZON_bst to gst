@@ -1,0 +1,24 @@
+//reverse of inorder traversal
+class Solution {
+public:
+    TreeNode* bstToGst(TreeNode* root) {
+        int sum = 0; // Initialize the cumulative sum
+        convertToGst(root, sum);
+        return root;
+    }
+
+private:
+    void convertToGst(TreeNode* root, int& sum) {
+        if (root == NULL) return;
+
+        // Traverse the right subtree first
+        convertToGst(root->right, sum);
+
+        // Update the current node's value with the cumulative sum
+        sum += root->val;
+        root->val = sum;
+
+        // Traverse the left subtree
+        convertToGst(root->left, sum);
+    }
+};
