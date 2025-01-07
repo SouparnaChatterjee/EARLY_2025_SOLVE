@@ -1,0 +1,12 @@
+TreeNode* successor=nullptr;
+    while(root!=nullptr)
+    {
+        if(root->val>p->val)
+        {
+            successor=root->val;
+            root=root->left;
+        }
+        else
+        { successor=root->right; }
+    } 
+    return successor;   
