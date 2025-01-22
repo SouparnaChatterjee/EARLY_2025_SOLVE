@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+    stack<int> st; // int since i keep track of indices here
+    int ans = 0;
+    int n = s.size();
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '(') st.push(i);
+        else
+        {
+            if (!st.empty()) st.pop(); // Added check to avoid popping from an empty stack
+            if (st.empty()) st.push(i);
+            else
+            {
+                ans = max(ans, i - st.top());
+            }
+        }
+    }
+    return ans;
+    }
+};
