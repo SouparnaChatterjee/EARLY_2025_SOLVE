@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string, int> mp;
+        for (string& s : words) {
+            mp[s]++;
+        }
+
+        vector<string> sorted;
+        for (auto& it : mp) {
+            sorted.push_back(it.first);
+        }
+
+        sort(sorted.begin(), sorted.end(), [&](const string& a, const string& b) {
+            if (mp[a] == mp[b]) return a < b;  // Lexicographical order for ties
+            return mp[a] > mp[b];              // Descending order of frequency
+        });
+
+        // Return only the top k words
+        return vector<string>(sorted.begin(), sorted.begin() + k);
+    }
+};
