@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+    int n=nums.size();
+    vector<int> memo(n,-1); 
+    return robHelper(nums,0,memo);    
+    }
+int robHelper(vector<int>& nums, int index, vector<int>& memo)
+{
+    if(index>=nums.size()) return 0;
+    if(memo[index]!=-1) return memo[index];
+    int take=nums[index]+robHelper(nums,index+2,memo);
+    int notTake=robHelper(nums,index+1,memo);
+    memo[index]=max(take,notTake);
+    return memo[index];
+}
+};
