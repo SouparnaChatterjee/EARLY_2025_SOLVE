@@ -1,0 +1,23 @@
+public:
+unordered_map<int,int> mp;
+int maxFreq=INT_MIN;
+    vector<int> findFrequentTreeSum(TreeNode* root) {
+    vector<int> result;
+    dfs(root);
+    for(auto& it:mp)
+    {
+        if(it.second==maxFreq)
+        result.push_back(it.first);
+    }
+    return result;
+    }
+private:
+   int dfs(TreeNode* root)
+   {
+    if(root==NULL) return 0;
+    int currSum=root->val+dfs(root->left)+dfs(root->right);
+    ++mp[currSum];
+    maxFreq=max(maxFreq,mp[currSum]);
+    return currSum;//returns something else
+   }
+};
