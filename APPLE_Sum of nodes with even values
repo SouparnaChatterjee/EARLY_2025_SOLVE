@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int sumEvenGrandparent(TreeNode* root) {
+    //bottom top top traversal--not reqd //if the node that is 2 level above is even, we take it
+    return dfs(root,0,0);
+    }
+    int dfs(TreeNode* node, TreeNode* parent, TreeNode* grandparent)
+    {
+        if(node==NULL) return 0;
+        int sum=0;
+        if(grandparent && grandparent->val%2==0)
+        {
+            sum+=node->val;
+        }
+        sum+=dfs(node->left,node, parent);
+        sum+=dfs(node->right, node, parent);
+        return sum;
+    }
+};
