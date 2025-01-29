@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+    if(root==NULL)    return 0;
+    //extra
+    if (root->left == NULL) {
+            return 1 + minDepth(root->right);
+        }
+        
+        // If right subtree is NULL, we only consider the left subtree
+        if (root->right == NULL) {
+            return 1 + minDepth(root->left);
+        }
+    int left=minDepth(root->left);
+    int right=minDepth(root->right);
+    return 1+min(left,right);
+    }
+};
