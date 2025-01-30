@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string longestWord(vector<string>& words) {
+        // Step 1: Sort by length first, then lexicographically
+        sort(words.begin(), words.end(), [](const string &a, const string &b) {
+            if (a.length() == b.length()) return a < b;  // Lexicographically smaller first
+            return a.length() < b.length();  // Shorter words first
+        });
+
+        unordered_set<string> validWords;
+        string longest = "";
+
+        for (const string& word : words) {
+            // If the word can be built from existing words
+            if (word.length() == 1 || validWords.count(word.substr(0, word.length() - 1))) {
+                validWords.insert(word);
+                
+                // Update the longest word found
+                if (word.length() > longest.length()) {
+                    longest = word;
+                }
+            }
+        }
+
+        return longest;
+    }
+};
