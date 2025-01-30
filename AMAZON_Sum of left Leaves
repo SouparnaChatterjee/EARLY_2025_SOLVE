@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int sumOfLeftLeaves(TreeNode* root) {
+        if (!root) return 0;
+        int leftSum = 0;
+        dfs(root, leftSum);
+        return leftSum;
+    }
+
+private:
+    void dfs(TreeNode* node, int& leftSum) {
+        if (!node) return;
+
+        // Check if left child is a leaf
+        if (node->left && !node->left->left && !node->left->right) {
+            leftSum += node->left->val;
+        }
+
+        // Continue DFS traversal
+        dfs(node->left, leftSum);
+        dfs(node->right, leftSum);
+    }
+};
