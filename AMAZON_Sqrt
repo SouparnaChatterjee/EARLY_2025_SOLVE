@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+    long long sqrt=0;
+    if(x==1)
+        return 1;
+        for(long long i=1;i<=x/2;i++)   
+    {
+       if(i*i<=x) sqrt=i;
+       else
+       break;
+    } 
+    return sqrt;
+    }
+};
